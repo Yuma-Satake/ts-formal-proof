@@ -1,0 +1,8 @@
+pre-commit:
+  jobs:
+    - name: oxlint
+      run: pnpm exec oxlint
+    - name: oxfmt
+      run: pnpm exec oxfmt --check
+    - name: typecheck
+      run: pnpm exec tsc -p .

@@ -1,0 +1,26 @@
+# ts-formal-proof
+
+TypeScriptの型検査で形式証明ができるかを試した実験コード。五反田.ts #2 のLTで使った。
+
+型を主張、その型を持つ値を証明とみなし、コンパイラに検査させる。
+
+## ファイル
+
+| ファイル | 内容 |
+| --- | --- |
+| `src/proofs.ts` | 論理の証明（modus ponens、対偶、ド・モルガンなど）、型レベルの自然数、証明できない主張、`any` による抜け穴 |
+| `src/type-guard.ts` | 型ガードの動きと、述語の本体が検査されないこと |
+| `src/practical.ts` | コンパイラが検査する実務向けの例（`assertNever` による網羅性、状態遷移の型） |
+| `lean/AddZero.lean` | `src/proofs.ts` の型レベル自然数と同じ定義で、任意の `n` について `n + 0 = n` を帰納法で証明するLeanのコード |
+
+`@ts-expect-error` が付いた行は、意図したエラーが出ることを検査している。コメントを外すと、その行が型エラーになる。
+
+## 実行
+
+```sh
+mise install
+pnpm install
+pnpm typecheck
+```
+
+Leanのコードは https://live.lean-lang.org/ に貼り付けると検査できる。
